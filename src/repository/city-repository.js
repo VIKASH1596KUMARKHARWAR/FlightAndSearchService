@@ -10,21 +10,48 @@ class CityRepository {
             return city;
         }
         catch (error) {
-            throw {error};
+            console.log("Something went wrong in the repository layer")
+            throw { error };
         }
     }
 
-    async deleteCity(cityId){
-        try{
+    async deleteCity(cityId) {
+        try {
             await City.destroy({
-                where:{
-                    id:cityId
+                where: {
+                    id: cityId
                 }
             });
-        }catch(error){
-            throw {error};
+        } catch (error) {
+            throw { error };
         }
     }
+
+
+    async updateCity(cityId, data) {
+        try {
+            //update take the first parameter as an of object --> data here, key values pair of type>>> "name" : "the_correct_name" to update and second parameter is also a parameter of obj type taking the where clause.
+            const city = await City.update(data, {
+                where: {
+                    id: cityId
+                }
+            });
+            return city;
+        } catch (error) {
+            console.log("Something went wrong in the repository layer")
+            throw { error };
+        }
+    }
+    async getCity(cityId) {
+        try {
+            const city = await City.findByPk(cityId);
+            return city;
+        } catch (error) {
+            console.log("Something went wrong in the repository layer")
+            throw { error };
+        }
+    }
+
 }
 
 
