@@ -12,11 +12,10 @@ module.exports = {
      *   isBetaMember: false
      * }], {});
      */
-
     await queryInterface.bulkInsert(
       "Airports",
       [
-        ({
+        {
           name: "Kempegowda International Airport",
           cityId: 10,
           createdAt: new Date(),
@@ -39,7 +38,7 @@ module.exports = {
           cityId: 7,
           createdAt: new Date(),
           updatedAt: new Date(),
-        }),
+        },
       ],
       {}
     );
