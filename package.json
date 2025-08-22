@@ -4,7 +4,7 @@
   "description": "Micro Service for handeling FLIGHT CRUD",
   "main": "index.js",
   "scripts": {
-    "start": "npx nodemon src/index"
+    "start": "npx nodemon  src/index"
   },
   "author": "",
   "license": "ISC",
