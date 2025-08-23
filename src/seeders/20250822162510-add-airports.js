@@ -45,11 +45,13 @@ module.exports = {
   },
 
   async down(queryInterface, Sequelize) {
-    /**
-     * Add commands to revert seed here.
-     *
-     * Example:
-     * await queryInterface.bulkDelete('People', null, {});
-     */
+    await queryInterface.bulkDelete("Airports", {
+      name: [
+        "Kempegowda International Airport",
+        "Mysure International Airport",
+        "Mengaluru International Airport",
+        "Indira Gandhi International Airport",
+      ],
+    });
   },
 };
