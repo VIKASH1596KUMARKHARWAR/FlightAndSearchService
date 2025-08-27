@@ -15,7 +15,17 @@ const create = async (req, res) => {
     //   });
     // }
 
-    const flight = await flightService.createFlight(req.body);
+    let flightRequestDate = {
+      flightNumber: req.body.flightNumber,
+      airplaneId: req.body.airplaneId,
+      departureAirportId: req.body.departureAirportId,
+      arrivalAirportId: req.body.arrivalAirportId,
+      arrivalTime: req.body.arrivalTime,
+      departureTime: req.body.departureTime,
+      price: req.body.price,
+    };
+
+    const flight = await flightService.createFlight(flightRequestDate);
     return res.status(201).json({
       success: true,
       message: "Successfully created a flight",
