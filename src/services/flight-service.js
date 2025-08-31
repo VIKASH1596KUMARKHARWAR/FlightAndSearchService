@@ -30,10 +30,18 @@ class FlightService {
   async getFlightByid(flightId) {
     try {
       const flight = await this.flightRepository.getFlight(flightId);
+      if (!flight) {
+        const error = new Error("Flight does not exist");
+        error.statusCode = 404;
+        throw error;
+      }
       return flight;
     } catch (error) {
-      console.log("Something went wrong in the service layer");
-      throw { error };
+      console.error(
+        "Something went wrong in the service layer:",
+        error.message
+      );
+      throw error;
     }
   }
 
@@ -46,8 +54,19 @@ class FlightService {
       throw { error };
     }
   }
+  async updateFlight(flightId, data) {
+    try {
+      const updatedFlight = await this.flightRepository.updateFlight(
+        flightId,
+        data
+      );
+      return updatedFlight;
+    } catch (error) {
+      console.log("Something went wrong in the service layer", error.message);
+      throw error; // propagate the real error
+    }
+  }
 }
-
 module.exports = FlightService;
 
 /*

@@ -47,7 +47,7 @@ const create = async (req, res) => {
   }
 };
 
-const getFlightByid = async (req, res) => {
+const get = async (req, res) => {
   try {
     const response = await flightService.getFlightByid(req.params.id);
     return res.status(SuccessCodes.OK).json({
@@ -59,11 +59,13 @@ const getFlightByid = async (req, res) => {
   } catch (error) {
     console.error("Error fetching flight:", error);
 
-    return res.status(500).json({
+    return res.status(error.statusCode || 500).json({
       data: {},
       success: false,
       message: "Not able to get the flight",
-      err: error.message || error,
+      err: {
+        message: error.message || "Internal Server Error",
+      },
     });
   }
 };
@@ -89,4 +91,26 @@ const getAll = async (req, res) => {
   }
 };
 
-module.exports = { create, getFlightByid, getAll };
+const update = async (req, res) => {
+  try {
+    const response = await flightService.updateFlight(req.params.id, req.body);
+    return res.status(SuccessCodes.OK).json({
+      data: response,
+      success: true,
+      message: "Successfully updated the flight",
+      err: {},
+    });
+  } catch (error) {
+    console.error("Error updating flight:", error);
+
+    return res.status(error.statusCode || 500).json({
+      data: {},
+      success: false,
+      message: "Not able to update the flight",
+      err: {
+        message: error.message || "Internal Server Error",
+      },
+    });
+  }
+};
+module.exports = { create, get, getAll, update };

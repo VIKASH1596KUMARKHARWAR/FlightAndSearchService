@@ -13,12 +13,13 @@ router.get("/city", CityController.getAll);
 router.patch("/city/:id", CityController.update);
 
 router.post(
-  "/flight",
+  "/flights",
   FlightMiddlewares.validateCreateFlight,
   FlightController.create
 );
-router.get("/flight/:id", FlightController.getFlightByid);
-router.get("/flight/", FlightController.getAll);
+router.get("/flights/:id", FlightController.get);
+router.get("/flights/", FlightController.getAll);
+router.patch("/flights/:id", FlightController.update);
 
 router.post("/airports", AirportController.create);
 

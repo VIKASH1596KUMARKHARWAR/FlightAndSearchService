@@ -38,7 +38,7 @@ class FlightRepository {
       return flight;
     } catch (error) {
       console.log("Something went wrong in the repository layer");
-      throw { error };
+      throw error;
     }
   }
 
@@ -53,6 +53,30 @@ class FlightRepository {
     } catch (error) {
       console.log("Something went wrong in the repository layer");
       throw { error };
+    }
+  }
+
+  async updateFlight(flightId, data) {
+    try {
+      console.log("Updating flightId:", flightId, "with data:", data);
+
+      const [updatedCount] = await Flights.update(data, {
+        where: { id: flightId },
+      });
+
+      if (updatedCount === 0) {
+        throw new Error("Flight not found or no changes applied");
+      }
+
+      // Fetch the updated flight
+      const updatedFlight = await Flights.findByPk(flightId);
+      return updatedFlight;
+    } catch (error) {
+      console.log(
+        "Something went wrong in the repository layer",
+        error.message
+      );
+      throw error; // don't wrap unnecessarily
     }
   }
 }
