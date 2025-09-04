@@ -1,5 +1,19 @@
 # Welcome to Flights Service
 
+---
+
+## Related Projects / Services
+
+- [AirTicket API Gateway](https://github.com/VIKASH1596KUMARKHARWAR/AirTicket_API_GATEWAY)
+
+- [AirTicket Auth Service](https://github.com/VIKASH1596KUMARKHARWAR/Auth_Service)
+
+- [AirTicket Booking Service](https://github.com/VIKASH1596KUMARKHARWAR/AirTicket_BookingService)
+
+- [AirTicket Remainder Service](https://github.com/VIKASH1596KUMARKHARWAR/AirTicket_RemainderService)
+
+---
+
 ## Project Setup
 
 - Clone the project on your local
